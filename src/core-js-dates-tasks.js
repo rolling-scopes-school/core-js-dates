@@ -22,6 +22,20 @@ function dateToTimestamp(/* date */) {
 }
 
 /**
+ * Returns the time in hh:mm:ss format from the received date.
+ *
+ * @param {Date} date - date.
+ * @return {string} name of the day of the week.
+ *
+ * @example:
+ * Date(2023, 5, 1, 8, 20, 55) => '08:20:55'
+ * Date(2015, 10, 20, 23, 15, 1) => '23:15:01'
+ */
+function getTime(/* date */) {
+  throw new Error('Not implemented');
+}
+
+/**
  * Returns the name of the day of the week for the passed date.
  *
  * @param {string} date - date and time.
@@ -33,6 +47,35 @@ function dateToTimestamp(/* date */) {
  * '2024-01-30T00:00:00.000Z' => 'Tuesday'
  */
 function getDayName(/* date */) {
+  throw new Error('Not implemented');
+}
+
+/**
+ * Returns the date of the next Friday from a given date.
+ *
+ * @param {Date} date
+ * @return {Date}
+ *
+ * @example:
+ * Date(2024, 1, 13) => Date(2024, 1, 16)
+ * Date(2024, 1, 16) => Date(2024, 1, 23)
+ */
+function getNextFriday(/* date */) {
+  throw new Error('Not implemented');
+}
+
+/**
+ * Returns the number of days in a given month and year.
+ *
+ * @param {number} month
+ * @param {number} year
+ * @return {number}
+ *
+ * @example:
+ * 1, 2024 => 31
+ * 2, 2024 => 29
+ */
+function getCountDaysInMonth(/* month, year */) {
   throw new Error('Not implemented');
 }
 
@@ -68,7 +111,7 @@ function getCountDaysOnPeriod(/* dateStart, dateEnd */) {
  * '2024-02-02', { start: '2024-02-02', end: '2024-03-02' } => true
  * '2024-02-10', { start: '2024-02-02', end: '2024-03-02' } => true
  */
-function hasDateInPeriod(/* date, period */) {
+function isDateInPeriod(/* date, period */) {
   throw new Error('Not implemented');
 }
 
@@ -104,6 +147,51 @@ function getCountWeekendsInMonth(/* month, year */) {
 }
 
 /**
+ * Returns the week number of the year by date.
+ *
+ * @param {Date} date - date.
+ * @return {string} formatted date.
+ *
+ * @example:
+ * Date(2024, 1, 1) => 1
+ * Date(2024, 1, 31) => 5
+ * Date(2024, 2, 23) => 8
+ */
+function getWeekNumberByDate(/* date */) {
+  throw new Error('Not implemented');
+}
+
+/**
+ * Returns the date of the next Friday the 13th from a given date.
+ * Friday the 13th is considered an unlucky day in some cultures.
+ *
+ * @param {Date} date
+ * @return {Date}
+ *
+ * @example:
+ * Date(2024, 1, 13) => Date(2024, 5, 13)
+ * Date(2024, 5, 13) => Date(2024, 8, 13)
+ */
+function getNextFridayThe13th(/* date */) {
+  throw new Error('Not implemented');
+}
+
+/**
+ * Returns the neighborhood in which the specified dada is located.
+ *
+ * @param {Date} date
+ * @return {Date}
+ *
+ * @example:
+ * Date(2024, 1, 13) => 1
+ * Date(2024, 5, 1) => 2
+ * Date(2024, 12, 10) => 4
+ */
+function getQuarter(/* date */) {
+  throw new Error('Not implemented');
+}
+
+/**
  * Returns the employee's work schedule according to the specified parameters.
  * If the date falls on a weekend day, it should be moved to Monday.
  * Start and end dates inclusive.
@@ -120,17 +208,57 @@ function getCountWeekendsInMonth(/* month, year */) {
  *
  * @example:
  * { start: '01-01-2024', end: '15-01-2024' }, 1, 3 => ['01-01-2024', '05-01-2024', '09-01-2024', '15-01-2024']
+ * { start: '01-01-2024', end: '10-01-2024' }, 1, 1 => ['01-01-2024', '05-01-2024', '07-01-2024', '09-01-2024']
  */
 function getWorkSchedule(/* period, countWorkDays, countOffDays */) {
   throw new Error('Not implemented');
 }
 
+/**
+ * Returns the zodiac sign for a given date.
+ * The zodiac signs are based on the tropical zodiac system, which divides the ecliptic into 12 equal sectors of 30 degrees each.
+ *
+ * @param {Date} date
+ * @return {string}
+ *
+ * @example:
+ * Date(2024, 2, 13) => 'Pisces'
+ * Date(2024, 3, 20) => 'Aries'
+ */
+function getZodiacSign(/* date */) {
+  throw new Error('Not implemented');
+}
+
+/**
+ * Returns the number of leap years between two dates (inclusive).
+ * A leap year is a year that is divisible by 4, except if it is also divisible by 100 and not divisible by 400.
+ *
+ * @param {Date} dateStart
+ * @param {Date} dateEnd
+ * @return {number}
+ *
+ * @example:
+ * Date(2000, 0, 1), Date(2020, 11, 31) => 6
+ * Date(2021, 0, 1), Date(2024, 11, 31) => 1
+ */
+function getCountLeapYears(/* dateStart, dateEnd */) {
+  throw new Error('Not implemented');
+}
+
 module.exports = {
   dateToTimestamp,
+  getTime,
   getDayName,
+  getNextFriday,
+  getCountDaysInMonth,
   getCountDaysOnPeriod,
-  hasDateInPeriod,
+  isDateInPeriod,
   formatDate,
   getCountWeekendsInMonth,
+  getWeekNumberByDate,
+  getNextFridayThe13th,
+  getQuarter,
   getWorkSchedule,
+  getZodiacSign,
+  getCountLeapYears,
 };
