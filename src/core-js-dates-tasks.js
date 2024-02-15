@@ -57,8 +57,9 @@ function getDayName(/* date */) {
  * @return {Date}
  *
  * @example:
- * Date(2024, 1, 13) => Date(2024, 1, 16)
- * Date(2024, 1, 16) => Date(2024, 1, 23)
+ * Date('2024-02-03T00:00:00Z') => Date('2024-02-09T00:00:00Z')
+ * Date('2024-02-13T00:00:00Z') => Date('2024-02-16T00:00:00Z')
+ * Date('2024-02-16T00:00:00Z') => Date('2024-02-23T00:00:00Z')
  */
 function getNextFriday(/* date */) {
   throw new Error('Not implemented');
@@ -122,9 +123,9 @@ function isDateInPeriod(/* date, period */) {
  * @return {string} formatted date.
  *
  * @example:
- * '2024-02-01T15:00:00.000Z' => '01/02/24, 15:00:00'
- * '1999-01-05T02:20:00.000Z' => '05/01/99, 02:20:00'
- * '2010-12-15T22:59:00.000Z' => '15/12/10, 22:59:00'
+ * '2024-02-01T15:00:00.000Z' => '2/1/2024, 3:00:00 PM'
+ * '1999-01-05T02:20:00.000Z' => '1/5/1999, 2:20:00 AM'
+ * '2010-12-15T22:59:00.000Z' => '12/15/2010, 10:59:00 PM'
  */
 function formatDate(/* date */) {
   throw new Error('Not implemented');
@@ -150,12 +151,12 @@ function getCountWeekendsInMonth(/* month, year */) {
  * Returns the week number of the year by date.
  *
  * @param {Date} date - date.
- * @return {string} formatted date.
+ * @return {number} week number.
  *
  * @example:
- * Date(2024, 1, 1) => 1
- * Date(2024, 1, 31) => 5
- * Date(2024, 2, 23) => 8
+ * Date(2024, 0, 3) => 1
+ * Date(2024, 0, 31) => 5
+ * Date(2024, 1, 23) => 8
  */
 function getWeekNumberByDate(/* date */) {
   throw new Error('Not implemented');
@@ -169,15 +170,15 @@ function getWeekNumberByDate(/* date */) {
  * @return {Date}
  *
  * @example:
- * Date(2024, 1, 13) => Date(2024, 5, 13)
- * Date(2024, 5, 13) => Date(2024, 8, 13)
+ * Date(2024, 0, 13) => Date(2024, 8, 13)
+ * Date(2023, 1, 1) => Date(2023, 9, 13)
  */
 function getNextFridayThe13th(/* date */) {
   throw new Error('Not implemented');
 }
 
 /**
- * Returns the neighborhood in which the specified dada is located.
+ * Returns the neighborhood in which the specified data is located.
  *
  * @param {Date} date
  * @return {Date}
@@ -185,7 +186,7 @@ function getNextFridayThe13th(/* date */) {
  * @example:
  * Date(2024, 1, 13) => 1
  * Date(2024, 5, 1) => 2
- * Date(2024, 12, 10) => 4
+ * Date(2024, 10, 10) => 4
  */
 function getQuarter(/* date */) {
   throw new Error('Not implemented');
@@ -193,7 +194,6 @@ function getQuarter(/* date */) {
 
 /**
  * Returns the employee's work schedule according to the specified parameters.
- * If the date falls on a weekend day, it should be moved to Monday.
  * Start and end dates inclusive.
  *
  * @typedef {{
@@ -201,47 +201,32 @@ function getQuarter(/* date */) {
  * end: string
  * }} DatePeriod
  *
- * @param {DatePeriod} period - source year.
+ * @param {DatePeriod} period - dates start and end repiod.
  * @param {number} countWorkDays - number of working days.
  * @param {number} countOffDays - number of days off.
  * @return {Array<Date>} work schedule.
  *
  * @example:
- * { start: '01-01-2024', end: '15-01-2024' }, 1, 3 => ['01-01-2024', '05-01-2024', '09-01-2024', '15-01-2024']
- * { start: '01-01-2024', end: '10-01-2024' }, 1, 1 => ['01-01-2024', '05-01-2024', '07-01-2024', '09-01-2024']
+ * { start: '01-01-2024', end: '15-01-2024' }, 1, 3 => ['01-01-2024', '05-01-2024', '09-01-2024', '13-01-2024']
+ * { start: '01-01-2024', end: '10-01-2024' }, 1, 1 => ['01-01-2024', '03-01-2024', '05-01-2024', '07-01-2024', '09-01-2024']
  */
 function getWorkSchedule(/* period, countWorkDays, countOffDays */) {
   throw new Error('Not implemented');
 }
 
 /**
- * Returns the zodiac sign for a given date.
- * The zodiac signs are based on the tropical zodiac system, which divides the ecliptic into 12 equal sectors of 30 degrees each.
- *
- * @param {Date} date
- * @return {string}
- *
- * @example:
- * Date(2024, 2, 13) => 'Pisces'
- * Date(2024, 3, 20) => 'Aries'
- */
-function getZodiacSign(/* date */) {
-  throw new Error('Not implemented');
-}
-
-/**
- * Returns the number of leap years between two dates (inclusive).
+ * Returns whether the year in the passed date is a leap year.
  * A leap year is a year that is divisible by 4, except if it is also divisible by 100 and not divisible by 400.
  *
- * @param {Date} dateStart
- * @param {Date} dateEnd
- * @return {number}
+ * @param {Date} date
+ * @return {boolean}
  *
  * @example:
- * Date(2000, 0, 1), Date(2020, 11, 31) => 6
- * Date(2021, 0, 1), Date(2024, 11, 31) => 1
+ * Date(2024, 2, 1) => true
+ * Date(2022, 2, 1) => false
+ * Date(2020, 2, 1) => true
  */
-function getCountLeapYears(/* dateStart, dateEnd */) {
+function isLeapYear(/* date */) {
   throw new Error('Not implemented');
 }
 
@@ -259,6 +244,5 @@ module.exports = {
   getNextFridayThe13th,
   getQuarter,
   getWorkSchedule,
-  getZodiacSign,
-  getCountLeapYears,
+  isLeapYear,
 };

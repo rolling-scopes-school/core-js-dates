@@ -265,7 +265,6 @@ describe('core-js-dates', () => {
         tasks.formatDate('2010-12-15T22:59:00.000Z'),
         '12/15/2010, 10:59:00 PM'
       );
-
       assert.equal(
         tasks.formatDate('1970-12-14T05:30:05.000Z'),
         '12/14/1970, 5:30:05 AM'
@@ -292,6 +291,14 @@ describe('core-js-dates', () => {
       assert.equal(tasks.getCountWeekendsInMonth(5, 2022), 9);
       assert.equal(tasks.getCountWeekendsInMonth(12, 2023), 10);
       assert.equal(tasks.getCountWeekendsInMonth(1, 2024), 8);
+      assert.equal(tasks.getCountWeekendsInMonth(5, 2024), 8);
+      assert.equal(tasks.getCountWeekendsInMonth(6, 2023), 8);
+      assert.equal(tasks.getCountWeekendsInMonth(7, 2023), 10);
+      assert.equal(tasks.getCountWeekendsInMonth(8, 2020), 10);
+      assert.equal(tasks.getCountWeekendsInMonth(9, 2020), 8);
+      assert.equal(tasks.getCountWeekendsInMonth(10, 2015), 9);
+      assert.equal(tasks.getCountWeekendsInMonth(11, 2000), 8);
+      assert.equal(tasks.getCountWeekendsInMonth(12, 1990), 10);
       assert.equal(
         forbidden.isCommented(tasks.getCountWeekendsInMonth),
         false,
@@ -300,16 +307,179 @@ describe('core-js-dates', () => {
     }
   );
 
-  it.optional('getWeekNumberByDate should TODO', () => {});
-  it.optional('getNextFridayThe13th should TODO', () => {});
-  it.optional('getQuarter should TODO', () => {});
+  it.optional(
+    'getWeekNumberByDate should return the week number of the year by date',
+    () => {
+      assert.equal(tasks.getWeekNumberByDate(new Date(2024, 0, 3)), 1);
+      assert.equal(tasks.getWeekNumberByDate(new Date(2024, 0, 31)), 5);
+      assert.equal(tasks.getWeekNumberByDate(new Date(2024, 1, 23)), 8);
+      assert.equal(tasks.getWeekNumberByDate(new Date(2023, 1, 23)), 8);
+      assert.equal(tasks.getWeekNumberByDate(new Date(2022, 2, 22)), 13);
+      assert.equal(tasks.getWeekNumberByDate(new Date(2021, 3, 21)), 17);
+      assert.equal(tasks.getWeekNumberByDate(new Date(2020, 4, 20)), 21);
+      assert.equal(tasks.getWeekNumberByDate(new Date(2019, 5, 23)), 26);
+      assert.equal(tasks.getWeekNumberByDate(new Date(2018, 6, 22)), 30);
+      assert.equal(tasks.getWeekNumberByDate(new Date(2017, 7, 21)), 34);
+      assert.equal(tasks.getWeekNumberByDate(new Date(2016, 8, 20)), 39);
+      assert.equal(tasks.getWeekNumberByDate(new Date(2015, 9, 23)), 43);
+      assert.equal(tasks.getWeekNumberByDate(new Date(1950, 10, 22)), 47);
+      assert.equal(
+        forbidden.isCommented(tasks.getWeekNumberByDate),
+        false,
+        `Be sure to remove comments from the final solution`
+      );
+    }
+  );
+
+  it.optional(
+    'getNextFridayThe13th should return the date of the next Friday the 13th from a given date',
+    () => {
+      assert.deepEqual(
+        tasks.getNextFridayThe13th(new Date(2024, 0, 1)),
+        new Date(2024, 8, 13)
+      );
+      assert.deepEqual(
+        tasks.getNextFridayThe13th(new Date(2023, 0, 1)),
+        new Date(2023, 0, 13)
+      );
+      assert.deepEqual(
+        tasks.getNextFridayThe13th(new Date(2022, 0, 1)),
+        new Date(2022, 4, 13)
+      );
+      assert.deepEqual(
+        tasks.getNextFridayThe13th(new Date(2021, 0, 1)),
+        new Date(2021, 7, 13)
+      );
+      assert.equal(
+        forbidden.isCommented(tasks.getNextFridayThe13th),
+        false,
+        `Be sure to remove comments from the final solution`
+      );
+    }
+  );
+
+  it.optional(
+    'getQuarter should return the neighborhood in which the specified data is located',
+    () => {
+      assert.equal(tasks.getQuarter(new Date(2024, 1, 13)), 1);
+      assert.equal(tasks.getQuarter(new Date(2024, 5, 1)), 2);
+      assert.equal(tasks.getQuarter(new Date(2024, 10, 10)), 4);
+      assert.equal(tasks.getQuarter(new Date(2024, 12, 10)), 1);
+      assert.equal(
+        forbidden.isCommented(tasks.getQuarter),
+        false,
+        `Be sure to remove comments from the final solution`
+      );
+    }
+  );
 
   it.optional(
     'getWorkSchedule should returns work schedule according to the specified parameters',
     () => {
       assert.deepEqual(
         tasks.getWorkSchedule({ start: '01-01-2024', end: '15-01-2024' }, 1, 3),
-        ['01-01-2024', '05-01-2024', '09-01-2024', '15-01-2024']
+        ['01-01-2024', '05-01-2024', '09-01-2024', '13-01-2024']
+      );
+      assert.deepEqual(
+        tasks.getWorkSchedule({ start: '01-01-2024', end: '10-01-2024' }, 1, 1),
+        ['01-01-2024', '03-01-2024', '05-01-2024', '07-01-2024', '09-01-2024']
+      );
+      assert.deepEqual(
+        tasks.getWorkSchedule({ start: '01-01-2024', end: '29-02-2024' }, 2, 2),
+        [
+          '01-01-2024',
+          '02-01-2024',
+          '05-01-2024',
+          '06-01-2024',
+          '09-01-2024',
+          '10-01-2024',
+          '13-01-2024',
+          '14-01-2024',
+          '17-01-2024',
+          '18-01-2024',
+          '21-01-2024',
+          '22-01-2024',
+          '25-01-2024',
+          '26-01-2024',
+          '29-01-2024',
+          '30-01-2024',
+          '02-02-2024',
+          '03-02-2024',
+          '06-02-2024',
+          '07-02-2024',
+          '10-02-2024',
+          '11-02-2024',
+          '14-02-2024',
+          '15-02-2024',
+          '18-02-2024',
+          '19-02-2024',
+          '22-02-2024',
+          '23-02-2024',
+          '26-02-2024',
+          '27-02-2024',
+        ]
+      );
+      assert.deepEqual(
+        tasks.getWorkSchedule({ start: '01-01-2024', end: '31-03-2024' }, 3, 2),
+        [
+          '01-01-2024',
+          '02-01-2024',
+          '03-01-2024',
+          '06-01-2024',
+          '07-01-2024',
+          '08-01-2024',
+          '11-01-2024',
+          '12-01-2024',
+          '13-01-2024',
+          '16-01-2024',
+          '17-01-2024',
+          '18-01-2024',
+          '21-01-2024',
+          '22-01-2024',
+          '23-01-2024',
+          '26-01-2024',
+          '27-01-2024',
+          '28-01-2024',
+          '31-01-2024',
+          '32-01-2024',
+          '33-01-2024',
+          '05-02-2024',
+          '06-02-2024',
+          '07-02-2024',
+          '10-02-2024',
+          '11-02-2024',
+          '12-02-2024',
+          '15-02-2024',
+          '16-02-2024',
+          '17-02-2024',
+          '20-02-2024',
+          '21-02-2024',
+          '22-02-2024',
+          '25-02-2024',
+          '26-02-2024',
+          '27-02-2024',
+          '01-03-2024',
+          '02-03-2024',
+          '03-03-2024',
+          '06-03-2024',
+          '07-03-2024',
+          '08-03-2024',
+          '11-03-2024',
+          '12-03-2024',
+          '13-03-2024',
+          '16-03-2024',
+          '17-03-2024',
+          '18-03-2024',
+          '21-03-2024',
+          '22-03-2024',
+          '23-03-2024',
+          '26-03-2024',
+          '27-03-2024',
+          '28-03-2024',
+          '31-03-2024',
+          '32-03-2024',
+          '33-03-2024',
+        ]
       );
       assert.equal(
         forbidden.isCommented(tasks.getWorkSchedule),
@@ -320,9 +490,46 @@ describe('core-js-dates', () => {
   );
 
   it.optional(
-    'getZodiacSign should returns work schedule according to the specified parameters',
-    () => {}
+    'isLeapYear should return whether the year in the passed date is a leap year',
+    () => {
+      assert.equal(
+        tasks.isLeapYear(new Date(2024, 2, 1), true, '2024 is a leap year')
+      );
+      assert.equal(
+        tasks.isLeapYear(new Date(2022, 2, 1), false, '2022 is not a leap year')
+      );
+      assert.equal(
+        tasks.isLeapYear(new Date(2020, 2, 1), true, '2020 is a leap year')
+      );
+      assert.equal(
+        tasks.isLeapYear(new Date(1904, 2, 1), true, '1904 is a leap year')
+      );
+      assert.equal(
+        tasks.isLeapYear(new Date(1960, 2, 1), true, '1960 is a leap year')
+      );
+      assert.equal(
+        tasks.isLeapYear(new Date(1980, 2, 1), true, '1980 is a leap year')
+      );
+      assert.equal(
+        tasks.isLeapYear(new Date(2000, 2, 1), true, '2000 is a leap year')
+      );
+      assert.equal(
+        tasks.isLeapYear(new Date(1915, 2, 1), false, '1915 is not a leap year')
+      );
+      assert.equal(
+        tasks.isLeapYear(new Date(1965, 2, 1), false, '1965 is not a leap year')
+      );
+      assert.equal(
+        tasks.isLeapYear(new Date(1998, 2, 1), false, '1998 is not a leap year')
+      );
+      assert.equal(
+        tasks.isLeapYear(new Date(2010, 2, 1), false, '2010 is not a leap year')
+      );
+      assert.equal(
+        forbidden.isCommented(tasks.isLeapYear),
+        false,
+        `Be sure to remove comments from the final solution`
+      );
+    }
   );
-
-  it.optional('getCountLeapYears should TODO', () => {});
 });
