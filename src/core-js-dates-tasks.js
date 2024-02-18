@@ -36,10 +36,10 @@ function getTime(/* date */) {
 }
 
 /**
- * Returns the name of the day of the week for the passed date.
+ * Returns the name of the day of the week for a given date string.
  *
  * @param {string} date - date and time.
- * @return {string} name of the day of the week.
+ * @return {string} the name of the day of the week
  *
  * @example:
  * '01 Jan 1970 00:00:00 UTC' => 'Thursday'
@@ -66,10 +66,10 @@ function getNextFriday(/* date */) {
 }
 
 /**
- * Returns the number of days in a given month and year.
+ * Returns the number of days in a specified month and year.
  *
- * @param {number} month
- * @param {number} year
+ * @param {number} month - The month as a number (1 for January, 2 for February, etc.).
+ * @param {number} year - The year as a four-digit number.
  * @return {number}
  *
  * @example:
@@ -81,11 +81,11 @@ function getCountDaysInMonth(/* month, year */) {
 }
 
 /**
- * Returns the number of days between the start and end dates inclusive.
+ * Returns the total number of days between two dates, including both the start and end dates.
  *
- * @param {string} dateStart - start date of the period.
- * @param {string} dateEnd - end date of the period.
- * @return {number} count of days.
+ * @param {string} dateStart - The start date of the period in ISO 8601 format.
+ * @param {string} dateEnd - The end date of the period in ISO 8601 format.
+ * @return {number} - The total count of days in the period.
  *
  * @example:
  * '2024-02-01T00:00:00.000Z', '2024-02-02T00:00:00.000Z'  => 2
@@ -96,16 +96,16 @@ function getCountDaysOnPeriod(/* dateStart, dateEnd */) {
 }
 
 /**
- * Returns true if the date is within the range. Start and end dates inclusive.
+ * Returns true if a given date is within a specified range, including both the start and end dates.
  *
  * @typedef {{
- * start: string,
- * end: string
+ * start: string, // The start date in ISO 8601 format (e.g., 'YYYY-MM-DD').
+ * end: string    // The end date in ISO 8601 format.
  * }} DatePeriod
  *
- * @param {string} date - date.
- * @param {DatePeriod} period - period.
- * @return {boolean} date is within the range.
+ * @param {string} date - The date to check, in ISO 8601 format.
+ * @param {DatePeriod} period - The period to check against.
+ * @return {boolean} - True if the date is within the range, false otherwise.
  *
  * @example:
  * '2024-02-01', { start: '2024-02-02', end: '2024-03-02' } => false
@@ -117,10 +117,10 @@ function isDateInPeriod(/* date, period */) {
 }
 
 /**
- * Returns the date formatted in 'dd/MM/YY, hh:mm:ss'.
+ * Returns the date formatted in 'M/D/YYYY, hh:mm:ss a'.
  *
- * @param {string} date - date of the period.
- * @return {string} formatted date.
+ * @param {string} date - The date to be formatted, in ISO 8601 format (e.g., 'YYYY-MM-DDTHH:mm:ss.sssZ').
+ * @return {string} - The date formatted in 'Month/Day/Year, Hour:Minute:Second AM/PM'.
  *
  * @example:
  * '2024-02-01T15:00:00.000Z' => '2/1/2024, 3:00:00 PM'
@@ -132,11 +132,11 @@ function formatDate(/* date */) {
 }
 
 /**
- * Returns the number of days off (weekends) in the month.
+ * Returns the total number of weekend days (Saturdays and Sundays) in a specified month and year.
  *
- * @param {number} month - source month.
- * @param {number} year - source year.
- * @return {number} count weekends.
+ * @param {number} month - The source month as a number (1 for January, 2 for February, etc.).
+ * @param {number} year - The source year as a four-digit number.
+ * @return {number} - The total count of weekend days in the month.
  *
  * @example:
  * 5, 2022 => 9
@@ -148,10 +148,10 @@ function getCountWeekendsInMonth(/* month, year */) {
 }
 
 /**
- * Returns the week number of the year by date.
+ * Returns the week number of the year for a given date.
  *
- * @param {Date} date - date.
- * @return {number} week number.
+ * @param {Date} date - The date for which to find the week number.
+ * @return {number} - The week number of the year.
  *
  * @example:
  * Date(2024, 0, 3) => 1
@@ -166,8 +166,8 @@ function getWeekNumberByDate(/* date */) {
  * Returns the date of the next Friday the 13th from a given date.
  * Friday the 13th is considered an unlucky day in some cultures.
  *
- * @param {Date} date
- * @return {Date}
+ * @param {Date} date - The starting date to search from.
+ * @return {Date} - The date of the next Friday the 13th.
  *
  * @example:
  * Date(2024, 0, 13) => Date(2024, 8, 13)
@@ -178,10 +178,10 @@ function getNextFridayThe13th(/* date */) {
 }
 
 /**
- * Returns the neighborhood in which the specified data is located.
+ * Returns the quarter of the year for a given date.
  *
- * @param {Date} date
- * @return {Date}
+ * @param {Date} date - The date for which to find the quarter.
+ * @return {number} - The quarter of the year (1-4).
  *
  * @example:
  * Date(2024, 1, 13) => 1
@@ -193,18 +193,18 @@ function getQuarter(/* date */) {
 }
 
 /**
- * Returns the employee's work schedule according to the specified parameters.
- * Start and end dates inclusive.
+ * Generates an employee's work schedule within a specified date range, based on a pattern of working and off days.
+ * The start and end dates of the period are inclusive.
  *
  * @typedef {{
- * start: string,
- * end: string
+ * start: string, // The start date in 'DD-MM-YYYY' format.
+ * end: string    // The end date in 'DD-MM-YYYY' format.
  * }} DatePeriod
  *
- * @param {DatePeriod} period - dates start and end repiod.
- * @param {number} countWorkDays - number of working days.
- * @param {number} countOffDays - number of days off.
- * @return {Array<Date>} work schedule.
+ * @param {DatePeriod} period - The start and end dates of the period.
+ * @param {number} countWorkDays - The number of consecutive working days.
+ * @param {number} countOffDays - The number of consecutive days off.
+ * @return {Array<string>} - An array of dates in 'DD-MM-YYYY' format representing the work schedule.
  *
  * @example:
  * { start: '01-01-2024', end: '15-01-2024' }, 1, 3 => ['01-01-2024', '05-01-2024', '09-01-2024', '13-01-2024']
@@ -215,11 +215,11 @@ function getWorkSchedule(/* period, countWorkDays, countOffDays */) {
 }
 
 /**
- * Returns whether the year in the passed date is a leap year.
- * A leap year is a year that is divisible by 4, except if it is also divisible by 100 and not divisible by 400.
+ * Determines whether the year in the provided date is a leap year.
+ * A leap year is a year divisible by 4, but not by 100, unless it is also divisible by 400.
  *
- * @param {Date} date
- * @return {boolean}
+ * @param {Date} date - The date from which the year will be checked.
+ * @return {boolean} - True if the year is a leap year, false otherwise.
  *
  * @example:
  * Date(2024, 2, 1) => true
