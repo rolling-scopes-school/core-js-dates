@@ -441,8 +441,8 @@ describe('core-js-dates', () => {
           '27-01-2024',
           '28-01-2024',
           '31-01-2024',
-          '32-01-2024',
-          '33-01-2024',
+          '01-01-2024',
+          '02-01-2024',
           '05-02-2024',
           '06-02-2024',
           '07-02-2024',
@@ -477,8 +477,6 @@ describe('core-js-dates', () => {
           '27-03-2024',
           '28-03-2024',
           '31-03-2024',
-          '32-03-2024',
-          '33-03-2024',
         ]
       );
       assert.equal(
@@ -493,37 +491,59 @@ describe('core-js-dates', () => {
     'isLeapYear should return whether the year in the passed date is a leap year',
     () => {
       assert.equal(
-        tasks.isLeapYear(new Date(2024, 2, 1), true, '2024 is a leap year')
+        tasks.isLeapYear(new Date(2024, 2, 1)),
+        true,
+        '2024 is a leap year'
       );
       assert.equal(
-        tasks.isLeapYear(new Date(2022, 2, 1), false, '2022 is not a leap year')
+        tasks.isLeapYear(new Date(2022, 2, 1)),
+        false,
+        '2022 is not a leap year'
       );
       assert.equal(
-        tasks.isLeapYear(new Date(2020, 2, 1), true, '2020 is a leap year')
+        tasks.isLeapYear(new Date(2020, 2, 1)),
+        true,
+        '2020 is a leap year'
       );
       assert.equal(
-        tasks.isLeapYear(new Date(1904, 2, 1), true, '1904 is a leap year')
+        tasks.isLeapYear(new Date(1904, 2, 1)),
+        true,
+        '1904 is a leap year'
       );
       assert.equal(
-        tasks.isLeapYear(new Date(1960, 2, 1), true, '1960 is a leap year')
+        tasks.isLeapYear(new Date(1960, 2, 1)),
+        true,
+        '1960 is a leap year'
       );
       assert.equal(
-        tasks.isLeapYear(new Date(1980, 2, 1), true, '1980 is a leap year')
+        tasks.isLeapYear(new Date(1980, 2, 1)),
+        true,
+        '1980 is a leap year'
       );
       assert.equal(
-        tasks.isLeapYear(new Date(2000, 2, 1), true, '2000 is a leap year')
+        tasks.isLeapYear(new Date(2000, 2, 1)),
+        true,
+        '2000 is a leap year'
       );
       assert.equal(
-        tasks.isLeapYear(new Date(1915, 2, 1), false, '1915 is not a leap year')
+        tasks.isLeapYear(new Date(1915, 2, 1)),
+        false,
+        '1915 is not a leap year'
       );
       assert.equal(
-        tasks.isLeapYear(new Date(1965, 2, 1), false, '1965 is not a leap year')
+        tasks.isLeapYear(new Date(1965, 2, 1)),
+        false,
+        '1965 is not a leap year'
       );
       assert.equal(
-        tasks.isLeapYear(new Date(1998, 2, 1), false, '1998 is not a leap year')
+        tasks.isLeapYear(new Date(1998, 2, 1)),
+        false,
+        '1998 is not a leap year'
       );
       assert.equal(
-        tasks.isLeapYear(new Date(2010, 2, 1), false, '2010 is not a leap year')
+        tasks.isLeapYear(new Date(2010, 2, 1)),
+        false,
+        '2010 is not a leap year'
       );
       assert.equal(
         forbidden.isCommented(tasks.isLeapYear),
