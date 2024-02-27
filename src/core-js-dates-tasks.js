@@ -25,7 +25,7 @@ function dateToTimestamp(/* date */) {
  * Returns the time in hh:mm:ss format from the received date.
  *
  * @param {Date} date - date.
- * @return {string} name of the day of the week.
+ * @return {string} time in hh:mm:ss format.
  *
  * @example:
  * Date(2023, 5, 1, 8, 20, 55) => '08:20:55'
