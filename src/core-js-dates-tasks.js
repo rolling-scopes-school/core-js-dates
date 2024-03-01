@@ -149,6 +149,7 @@ function getCountWeekendsInMonth(/* month, year */) {
 
 /**
  * Returns the week number of the year for a given date.
+ * The first week is the one that falls on January 1.
  *
  * @param {Date} date - The date for which to find the week number.
  * @return {number} - The week number of the year.
