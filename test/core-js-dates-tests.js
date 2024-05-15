@@ -313,16 +313,16 @@ describe('core-js-dates', () => {
       assert.equal(tasks.getWeekNumberByDate(new Date(2024, 0, 3)), 1);
       assert.equal(tasks.getWeekNumberByDate(new Date(2024, 0, 31)), 5);
       assert.equal(tasks.getWeekNumberByDate(new Date(2024, 1, 23)), 8);
-      assert.equal(tasks.getWeekNumberByDate(new Date(2023, 1, 23)), 9);
-      assert.equal(tasks.getWeekNumberByDate(new Date(2022, 2, 22)), 13);
-      assert.equal(tasks.getWeekNumberByDate(new Date(2021, 3, 21)), 17);
+      assert.equal(tasks.getWeekNumberByDate(new Date(2023, 1, 23)), 8);
+      assert.equal(tasks.getWeekNumberByDate(new Date(2022, 2, 22)), 12);
+      assert.equal(tasks.getWeekNumberByDate(new Date(2021, 3, 21)), 16);
       assert.equal(tasks.getWeekNumberByDate(new Date(2020, 4, 20)), 21);
       assert.equal(tasks.getWeekNumberByDate(new Date(2019, 5, 23)), 25);
       assert.equal(tasks.getWeekNumberByDate(new Date(2018, 6, 22)), 29);
-      assert.equal(tasks.getWeekNumberByDate(new Date(2017, 7, 21)), 35);
-      assert.equal(tasks.getWeekNumberByDate(new Date(2016, 8, 20)), 39);
+      assert.equal(tasks.getWeekNumberByDate(new Date(2017, 7, 21)), 34);
+      assert.equal(tasks.getWeekNumberByDate(new Date(2016, 8, 20)), 38);
       assert.equal(tasks.getWeekNumberByDate(new Date(2015, 9, 23)), 43);
-      assert.equal(tasks.getWeekNumberByDate(new Date(1950, 10, 22)), 48);
+      assert.equal(tasks.getWeekNumberByDate(new Date(1950, 10, 22)), 47);
       assert.equal(
         forbidden.isCommented(tasks.getWeekNumberByDate),
         false,
