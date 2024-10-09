@@ -91,6 +91,9 @@ $ npm run lint:fix
 **Answer**: Check your solution for an infinite loop, fix it, and rerun the test.
 
 **Question:** The solution in the local repository succeeds and all tests are "green", but in the application some tests don't count. What to do?<br>
+**Answer**: The server is in a different time zone and your solution is not universal. Change the time zone on your local computer and run the tests again. For example, to UTC+5 and UTC-5. You will probably see that some of the tests did not complete successfully.
+
+**Question:** The solution in the local repository succeeds and all tests are "green", but in the application some tests don't count. What to do?<br>
 **Answer**: [Update your repository fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork), update the local repository from the fork, run tests and fix your solution. After fixing, resubmit your solution for testing.
 
 ---
