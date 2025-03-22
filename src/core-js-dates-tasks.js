@@ -2,7 +2,7 @@
  *                                                                                             *
  * Please read the following tutorial before implementing tasks:                               *
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date       *
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Numbers_and_dates#date_object *
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Representing_dates_times      *
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl       *
  *                                                                                             *
  ********************************************************************************************* */
